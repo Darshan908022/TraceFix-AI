@@ -1,0 +1,42 @@
+/* App.css - Clean layout for TraceFix AI Dashboard */
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Ensure code blocks look clean */
+pre {
+  margin: 0;
+  font-family: 'Fira Code', 'Cascadia Code', Consolas, Monaco, 'Courier New', monospace;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Base button animations */
+button {
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+}
+
+/* Input textarea styling */
+textarea {
+  outline: none;
+  box-sizing: border-box;
+}
+
+textarea:focus {
+  border-color: #58a6ff !important;
+}

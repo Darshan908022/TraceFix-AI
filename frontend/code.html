@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TraceFix AI - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#4edea3",
+                      "background": "#0b1326",
+                      "primary": "#adc6ff",
+                      "outline-variant": "#414755",
+                      "on-tertiary-fixed": "#2a1700",
+                      "primary-fixed-dim": "#adc6ff",
+                      "secondary-fixed": "#6ffbbe",
+                      "surface-variant": "#2d3449",
+                      "surface-tint": "#adc6ff",
+                      "error-container": "#93000a",
+                      "on-primary": "#002e69",
+                      "on-secondary-fixed": "#002113",
+                      "primary-fixed": "#d8e2ff",
+                      "on-secondary-container": "#00311f",
+                      "on-background": "#dae2fd",
+                      "tertiary-container": "#ca8100",
+                      "surface-dim": "#0b1326",
+                      "secondary-container": "#00a572",
+                      "on-secondary-fixed-variant": "#005236",
+                      "error": "#ffb4ab",
+                      "tertiary": "#ffb95f",
+                      "on-primary-fixed-variant": "#004493",
+                      "surface-container-high": "#222a3d",
+                      "inverse-surface": "#dae2fd",
+                      "on-error-container": "#ffdad6",
+                      "tertiary-fixed": "#ffddb8",
+                      "surface": "#0b1326",
+                      "on-secondary": "#003824",
+                      "surface-bright": "#31394d",
+                      "on-tertiary-container": "#3e2400",
+                      "primary-container": "#4b8eff",
+                      "inverse-primary": "#005bc1",
+                      "secondary-fixed-dim": "#4edea3",
+                      "surface-container-lowest": "#060e20",
+                      "on-primary-fixed": "#001a41",
+                      "surface-container": "#171f33",
+                      "surface-container-low": "#131b2e",
+                      "on-tertiary": "#472a00",
+                      "tertiary-fixed-dim": "#ffb95f",
+                      "on-tertiary-fixed-variant": "#653e00",
+                      "on-error": "#690005",
+                      "outline": "#8b90a0",
+                      "on-surface-variant": "#c1c6d7",
+                      "surface-container-highest": "#2d3449",
+                      "on-primary-container": "#00285c",
+                      "inverse-on-surface": "#283044",
+                      "on-surface": "#dae2fd"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "2rem",
+                      "sm": "0.5rem",
+                      "lg": "1.5rem",
+                      "xs": "0.25rem",
+                      "gutter": "1rem",
+                      "md": "1rem",
+                      "margin-mobile": "1rem",
+                      "base": "4px",
+                      "margin-desktop": "2rem"
+              },
+              "fontFamily": {
+                      "code-sm": [
+                              "JetBrains Mono"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "headline-md": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "headline-sm": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "code-sm": [
+                              "13px",
+                              {
+                                      "lineHeight": "18px",
+                                      "fontWeight": "450"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "11px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-sm": [
+                              "20px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "600"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: #020617; /* Level 0 Background */
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid #334155;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        }
+        .neon-glow-emerald {
+            box-shadow: 0 0 10px rgba(78, 222, 163, 0.5), inset 0 0 5px rgba(78, 222, 163, 0.2);
+            border-color: #4edea3;
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 10px rgba(173, 198, 255, 0.5), inset 0 0 5px rgba(173, 198, 255, 0.2);
+            border-color: #adc6ff;
+        }
+        
+        .kube-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            animation: breathe 2s infinite ease-in-out;
+        }
+        @keyframes breathe {
+            0% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(78, 222, 163, 0.7); }
+            50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 8px 2px rgba(78, 222, 163, 0.5); }
+            100% { transform: scale(0.8); opacity: 0.5; box-shadow: 0 0 0 0 rgba(78, 222, 163, 0); }
+        }
+        
+        .log-textarea:focus {
+            outline: none;
+            border-color: #adc6ff;
+            box-shadow: 0 0 0 2px rgba(173, 198, 255, 0.2), 0 0 10px rgba(173, 198, 255, 0.1);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #414755; }
+      </style>
+</head>
+<body class="text-on-surface antialiased flex h-screen overflow-hidden font-body-md">
+<!-- SideNavBar -->
+<nav class="bg-surface-container dark:bg-surface-container docked left-0 h-full w-64 border-r border-outline-variant shadow-sm fixed left-0 top-0 h-full flex flex-col z-40 hidden md:flex">
+<div class="p-lg border-b border-outline-variant flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-sm border border-outline">
+<span class="material-symbols-outlined text-3xl text-secondary">memory</span>
+</div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">TraceFix AI</h1>
+<div class="flex items-center gap-xs mt-1">
+<span class="kube-status bg-secondary"></span>
+<span class="font-label-caps text-label-caps text-secondary">System Operational</span>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto py-md">
+<ul class="space-y-sm">
+<li>
+<a class="flex items-center gap-md bg-secondary-container/10 text-secondary border-r-2 border-secondary px-lg py-md scale-[0.98] transition-transform duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-variant hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">segment</span>
+<span class="font-label-caps text-label-caps">Logs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-variant hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">error</span>
+<span class="font-label-caps text-label-caps">Alerts</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant px-lg py-md hover:bg-surface-variant hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined">extension</span>
+<span class="font-label-caps text-label-caps">Integrations</span>
+</a>
+</li>
+</ul>
+</div>
+<div class="p-md border-t border-outline-variant">
+<ul class="space-y-xs">
+<li>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-variant hover:text-on-surface transition-all rounded" href="#">
+<span class="material-symbols-outlined text-sm">description</span>
+<span class="font-label-caps text-label-caps">Docs</span>
+</a>
+</li>
+<li>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-variant hover:text-on-surface transition-all rounded" href="#">
+<span class="material-symbols-outlined text-sm">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 h-full relative">
+<!-- TopNavBar -->
+<header class="bg-surface-dim dark:bg-surface-dim border-b border-outline-variant flex justify-between items-center w-full px-lg h-16 z-50 sticky top-0 flat no shadows">
+<div class="flex items-center gap-md">
+<!-- Mobile menu toggle placeholder -->
+<button class="md:hidden text-on-surface-variant p-sm rounded hover:bg-surface-variant/50 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+<input class="bg-[#0F172A] border border-outline-variant text-on-surface rounded pl-8 pr-sm py-xs font-body-md text-body-md w-64 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all" placeholder="Search traces, services..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<button class="p-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-variant/50 transition-colors rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline ml-sm">
+<img class="w-full h-full object-cover" data-alt="A detailed headshot portrait of a tech professional in a high-tech corporate environment, cool blue lighting, confident expression, high quality, photorealistic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxwyu2xfm-XlXelMJk8mdmQxib5Zegxx1bdjlFyfErq17Uy6kRAKPBb9ZjJe-wJll1CXGjiZTygOC4VVTIzvyBg3Jdj5HjbMEAw8PirYuJPBk1_fg_mr8zAdNQD9bpsPCkVe4RGnIWSJ44wjAsNyhkGSw7IuPOQdpWTCy7erGeYx8fVvH9QG75X5axSzWk1nMtQaCprBWvqVPnubDv1hF-uJXOkVL2VticQN32Bt6b9el5t9Yx58A9"/>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Content -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-surface">
+<div class="max-w-7xl mx-auto space-y-lg">
+<!-- Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md border-b border-outline-variant pb-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Diagnostic Workspace</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Paste stack traces or error logs for instant AI analysis.</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-md py-sm bg-[#1E293B] border border-outline-variant rounded font-label-caps text-label-caps text-on-surface hover:bg-surface-variant transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-sm">upload_file</span>
+                            Upload File
+                        </button>
+</div>
+</div>
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-lg">
+<!-- Left Column: Input -->
+<div class="xl:col-span-7 flex flex-col gap-md">
+<div class="glass-card rounded-lg flex flex-col h-[500px]">
+<div class="p-sm border-b border-outline-variant bg-[#1E293B]/50 flex justify-between items-center">
+<span class="font-label-caps text-label-caps text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">terminal</span>
+                                    Log Input
+                                </span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+</button>
+</div>
+<div class="flex-1 p-0 relative">
+<textarea class="log-textarea w-full h-full bg-[#0F172A]/80 text-on-surface font-code-sm text-code-sm p-md border-none resize-none focus:ring-0" placeholder="Paste standard out, stack traces, or raw JSON logs here...
+
+Example:
+[ERROR] 2023-10-27T14:32:01Z Connection refused to database service at tcp://db-cluster-prod:5432. Dial timeout.
+[WARN]  2023-10-27T14:32:02Z Retrying connection (1/3)..."></textarea>
+<!-- Decorative subtle grid overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-5" style="background-image: radial-gradient(#adc6ff 1px, transparent 1px); background-size: 20px 20px;"></div>
+</div>
+<div class="p-md border-t border-outline-variant bg-surface-container-low flex justify-between items-center">
+<div class="flex gap-2">
+<span class="inline-flex items-center rounded-sm bg-surface-variant px-2 py-1 font-label-caps text-label-caps text-on-surface-variant border border-outline/30">Auto-detect Format</span>
+</div>
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm rounded flex items-center gap-sm hover:shadow-[0_0_15px_rgba(173,198,255,0.4)] transition-all">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+                                    Analyze Log
+                                </button>
+</div>
+</div>
+</div>
+<!-- Right Column: Results (Simulated Active State) -->
+<div class="xl:col-span-5 flex flex-col gap-md">
+<!-- AI Diagnostic Results Panel -->
+<div class="glass-card rounded-lg neon-glow-primary overflow-hidden flex flex-col h-full">
+<div class="p-md border-b border-primary/30 bg-primary/5 flex justify-between items-center">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary animate-pulse">troubleshoot</span>
+<h3 class="font-headline-sm text-headline-sm text-primary">AI Diagnostic Results</h3>
+</div>
+<span class="inline-flex items-center rounded-sm bg-secondary/10 px-2 py-1 font-label-caps text-label-caps text-secondary border border-secondary/30">
+                                    Analysis Complete
+                                </span>
+</div>
+<div class="p-md flex-1 overflow-y-auto space-y-lg">
+<!-- Root Cause -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm">Root Cause Analysis</h4>
+<div class="bg-surface-container rounded p-md border border-outline-variant">
+<p class="font-body-md text-body-md text-on-surface">
+                                            The <code class="font-code-sm text-code-sm bg-[#0F172A] px-1 rounded text-primary">auth-service</code> pod experienced a sudden OOM (Out of Memory) kill due to a memory leak in the token validation middleware. This cascaded into connection timeouts for dependent services.
+                                        </p>
+</div>
+</div>
+<!-- Metrics Bento -->
+<div class="grid grid-cols-2 gap-sm">
+<!-- Severity -->
+<div class="bg-surface-container rounded p-md border border-outline-variant flex flex-col items-center justify-center text-center relative overflow-hidden">
+<!-- Decorative background glow for severity -->
+<div class="absolute inset-0 bg-error/10 rounded pointer-events-none blur-xl"></div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-xs relative z-10">Severity Score</h4>
+<div class="text-4xl font-headline-lg font-bold text-error relative z-10">9.2</div>
+<div class="text-xs text-on-surface-variant mt-1 relative z-10">CRITICAL</div>
+</div>
+<!-- Cost -->
+<div class="bg-surface-container rounded p-md border border-outline-variant flex flex-col items-center justify-center text-center relative overflow-hidden">
+<div class="absolute inset-0 bg-tertiary/10 rounded pointer-events-none blur-xl"></div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-xs relative z-10">Est. Downtime Cost</h4>
+<div class="text-3xl font-headline-lg font-bold text-tertiary relative z-10">$4,250</div>
+<div class="text-xs text-on-surface-variant mt-1 relative z-10">per minute</div>
+</div>
+</div>
+<!-- Suggested Fix -->
+<div>
+<h4 class="font-label-caps text-label-caps text-on-surface-variant mb-sm">Recommended Action</h4>
+<div class="bg-[#0F172A] rounded p-sm border border-outline-variant font-code-sm text-code-sm text-on-surface-variant overflow-x-auto">
+<div class="text-primary-fixed-dim"># Rollback middleware version and restart</div>
+<div>kubectl rollout undo deployment/auth-service</div>
+<div>kubectl rollout restart deployment/api-gateway</div>
+</div>
+</div>
+</div>
+<!-- Action Footer -->
+<div class="p-md border-t border-outline-variant bg-surface-container-low flex flex-col gap-sm">
+<button class="w-full bg-error text-on-error font-label-caps text-label-caps py-md rounded flex items-center justify-center gap-sm hover:bg-error-container transition-colors shadow-lg">
+<span class="material-symbols-outlined text-[20px]">merge</span>
+                                    Trigger Automated GitHub PR
+                                </button>
+<p class="text-center font-body-md text-[11px] text-on-surface-variant">Generates fix branch and opens PR to main repository.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>
